@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CCMA 8‑챕터 컬러 매칭 가이드</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{height:100%;scroll-behavior:smooth;scroll-snap-type:y mandatory;scroll-padding-top:6rem;font-size:20px;overflow-y:scroll;} /* 기본 폰트 크기를 크게 */
+    body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,sans-serif;color:#1d1d1f;scroll-snap-type:y mandatory;overscroll-behavior:contain;overflow-y:scroll;height:100%;font-weight:500;}
+    header{position:fixed;top:0;width:100%;padding:1.2rem 2rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(20px);z-index:9999;}
+    header nav{display:flex;flex-wrap:wrap;gap:1rem;font-size:1rem;}
+    a{text-decoration:none;color:#0071e3;font-weight:700;}a:hover{text-decoration:underline;}
+    section{scroll-snap-stop:always;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8rem 1.6rem 4.5rem;scroll-snap-align:start;text-align:center;transition:background .6s ease;}
+    h1{font-size:4rem;font-weight:800;margin-bottom:1.6rem;line-height:1.15;}
+    h2{font-size:3rem;font-weight:800;margin-bottom:1.2rem;}
+    p{max-width:840px;margin:1rem auto;font-size:1.4rem;line-height:1.65;color:#333;}
+    ol{margin:1.4rem auto 0;max-width:800px;text-align:left;font-size:1.25rem;line-height:1.65;color:#444;}
+    li{margin:.6rem 0 0 1.2rem;padding-left:.4rem;}
+    img{max-width:820px;border-radius:16px;box-shadow:0 10px 26px rgba(0,0,0,.08);margin:2.2rem 0;}
+    .btn{display:inline-block;margin-top:2.2rem;padding:1rem 2.4rem;border-radius:46px;background:#0071e3;color:#fff;font-weight:700;font-size:1.2rem;transition:.25s;} .btn:hover{background:#0060c9;}
+    /* 컬러 배경 */
+    #hero{background:#fafafa;}
+    #c1{background:#e7f1ff;} #c2{background:#fff1e2;} #c3{background:#f0fff4;} #c4{background:#fdf5ff;}
+    #c5{background:#f6fbff;} #c6{background:#fff8ed;} #c7{background:#effff9;} #c8{background:#fdf5fe;}
+    /* 페이드 인 */
+    .fade{opacity:0;transform:translateY(60px);transition:all .9s cubic-bezier(.215,.61,.355,1);} .show{opacity:1;transform:none;}
+    @media(max-width:600px){h1{font-size:3rem;} h2{font-size:2.2rem;} p{font-size:1.15rem;} ol{font-size:1.05rem;}}
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const io=new IntersectionObserver((e)=>{e.forEach(x=>x.isIntersecting&&x.target.classList.add('show'));},{threshold:.15});
+      document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+    });
+  </script>
+</head>
+<body>
+  <!-- 네비게이션 -->
+  <header>
+    <nav>
+      <a href="#hero">CCMA</a>
+      <a href="#c1">1 설치</a>
+      <a href="#c2">2 가져오기</a>
+      <a href="#c3">3 레퍼런스</a>
+      <a href="#c4">4 이미지 뷰</a>
+      <a href="#c5">5 패치 조정</a>
+      <a href="#c6">6 LUT 생성</a>
+      <a href="#c7">7 전·후 확인</a>
+      <a href="#c8">8 LUT 저장</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="fade">
+    <h1>환경에 제약 없는<br>완벽한 카메라 색 일치</h1>
+    <p style="font-size:1.6rem;font-weight:800;">CCMA로 누구나 LUT를 만들 수 있습니다.</p>
+    <p>캐논 카메라 컬러 매칭 어플리케이션 소프트웨어를 사용하여 GG프로덕션에 바로 적용 가능한 LUT를 만들어 보세요.</p>
+    <a class="btn" href="https://www.canon-europe.com/support" target="_blank" rel="noopener">앱 다운로드</a>
+  </section>
+
+  <!-- 1 설치 -->
+  <section id="c1" class="fade">
+    <h2>1 · 소프트웨어 설치</h2>
+    <p>Canon 공식 사이트에서 CCMA 최신 버전을 다운받아 설치합니다.</p>
+    <ol>
+      <li>Windows 10/11 PC에서 Setup.exe를 관리자 권한으로 실행합니다.</li>
+      <li>설치 완료 후 프로그램을 실행하면 빈 작업 공간이 나타납니다.</li>
+    </ol>
+    <img src="20250612_114012.png" alt="설치 후 최초 실행 화면" />
+  </section>
+
+  <!-- 2 가져오기 -->
+  <section id="c2" class="fade">
+    <h2>2 · 이미지 가져오기</h2>
+    <p>동일 조명 아래 ColorChecker를 촬영한 두 이미지를 불러옵니다.</p>
+    <ol>
+      <li><strong>Add Image</strong> 버튼을 두 번 눌러 참조·소스 이미지를 선택합니다.</li>
+    </ol>
+    <img src="20250612_114031.png" alt="가져오기 대화상자" />
+  </section>
+
+  <!-- 3 레퍼런스 지정 -->
+  <section id="c3" class="fade">
+    <h2>3 · 레퍼런스 지정</h2>
+    <p>참조 카메라 이미지를 지정해 LUT 방향을 결정합니다.</p>
+    <ol>
+      <li>왼쪽 썸네일에서 참조 이미지를 우클릭 → <em>Set as Reference</em>.</li>
+      <li>주황색 막대로 표시된 이미지는 <em>Source</em> (타깃)입니다.</li>
+    </ol>
+    <img src="20250612_114034.png" alt="레퍼런스 지정" />
+  </section>
+
+  <!-- 4 이미지 뷰 -->
+  <section id="c4" class="fade">
+    <h2>4 · 두 이미지 겹쳐 보기</h2>
+    <p><em>Show Both Image</em> 모드로 두 이미지를 스택합니다.</p>
+    <ol>
+      <li>툴바 드롭다운에서 <em>Show Both Image</em> 선택.</li>
+      <li>상·하로 분할된 화면에서 차트를 시각적으로 비교할 수 있습니다.</li>
+    </ol>
+    <img src="20250612_114037.png" alt="이미지 스택" />
+  </section>
+
+  <!-- 5 패치 조정 -->
+  <section id="c5" class="fade">
+    <h2>5 · 패치 자동 감지 & 조정</h2>
+    <p>자동 감지 후 ΔE 값을 낮추도록 패치 그리드를 보정합니다.</p>
+    <ol>
+      <li><strong>Auto Detect</strong> 클릭 → 녹색 박스가 24패치를 인식합니다.</li>
+      <li>누락 시 Column/Row 슬라이더 또는 프레임을 드래그해 맞춥니다.</li>
+      <li>ΔE 평균값이 10 이하일 때 다음 단계로 이동합니다.</li>
+    </ol>
+    <img src="20250612_114039.png" alt="패치 조정" />
+  </section>
+
+  <!-- 6 LUT 생성 -->
+  <section id="c6" class="fade">
+    <h2>6 · LUT 생성 & 미리보기</h2>
+    <p>버튼 한 번으로 LUT를 계산하고 스코프를 통해 정확도를 확인합니다.</p>
+    <ol>
+      <li><strong>Generate LUT</strong> 클릭 → 미리보기 창이 열립니다.</li>
+      <li><em>LUT Apply</em> 스위치를 켜고 끄며 Before/After를 비교합니다.</li>
+    </ol>
+    <img src="20250612_114043.png" alt="LUT 미리보기" />
+  </section>
+
+  <!-- 7 전후 확인 -->
+  <section id="c7" class="fade">
+    <h2>7 · Before / After 확인</h2>
+    <p>변화를 확실히 체감하려면 LUT 적용 상태를 토글해 보세요.</p>
+    <ol>
+      <li>스위치를 OFF → 원본, ON → 매칭된 결과.</li>
+      <li>스코프 분포가 겹친다면 성공입니다.</li>
+    </ol>
+    <img src="20250612_114049.png" alt="전후 비교" />
+  </section>
+
+  <!-- 8 LUT 저장 -->
+  <section id="c8" class="fade">
+    <h2>8 · LUT 저장</h2>
+    <p>표준 3D LUT(.cube)를 내보내 NLE, 모니터, 카메라에서 활용합니다.</p>
+    <ol>
+      <li><strong>Save LUT</strong> 클릭 → 33‑point .cube 선택.</li>
+      <li>파일명: <code>GGProd_CCMA_LUT.cube</code> (예시).</li>
+      <li>다빈치·프리미어·CR‑N700 등에서 불러와 색을 맞춥니다.</li>
+    </ol>
+    <img src="20250612_114055.png" alt="LUT 저장" />
+  </section>
+
+  <footer style="padding:2.5rem 1rem;text-align:center;color:#888;font-size:1rem;">© 2025 GG Production · CCMA 8‑챕터 가이드 – Made with ❤️</footer>
+</body>
+</html>
